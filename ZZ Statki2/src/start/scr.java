@@ -8,7 +8,7 @@ public class scr {
 
 		OknoStartowe startowe = new OknoStartowe();
 		startowe.setVisible(true);
-//
+
 	}
 
 }

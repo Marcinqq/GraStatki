@@ -12,8 +12,16 @@ import java.awt.event.ActionListener;
 public class GeneratorMapy implements ActionListener {
 	private JButton[][] buttons;
 	private TabelaGracza tabela = new TabelaGracza();
+	private int statkiDocelowe = 0;
+	private int statekNaMapie = 0;
+	private int dlugoscStatku = 0;
+	private int poziomStatku = 0;
+	Statki statki;
 
-	public GeneratorMapy() {
+// lidzba graczy 1 = 1 testy
+	// lidzba graczy 2 = 2
+	// lidzba graczy 3 = vs pc
+	public GeneratorMapy(int lidzbaGraczy, Statki statki) {
 //		setSize(500, 500);
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		setLayout(new BorderLayout());
@@ -36,7 +44,9 @@ public class GeneratorMapy implements ActionListener {
 				panel.add(buttons[i][j]);
 			}
 		}
-
+		this.statki = statki;
+		statekNaMapie = statki.getLotniskowiec();
+		dlugoscStatku = statki.getLotniskowiecDlugosc();
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
@@ -59,315 +69,105 @@ public class GeneratorMapy implements ActionListener {
 				}
 			}
 		}
-		int wyslany = 10;
-		tabela.ustawPole(wyslany, row, col);
-		tabela.print();
-		System.out.println(row + " i " + col);
+		if (poziomStatku == 0) {
 
-		source.setBackground(Color.RED);
-		// Wykonujemy odpowiednią akcję w zależności od pozycji przycisku do testuw
-		// ecra..
+			System.out.println("poziomStatku =0");
+			if (statkiDocelowe == statekNaMapie) {
+				poziomStatku++;
+				statkiDocelowe = 0;
+				statekNaMapie = statki.getNiszczyciel();
+			} else {
+				int wyslany = 10;
+				tabela.ustawPole(wyslany, row, col);// wysyłanie danych do tabeli.
+				tabela.print();
+				System.out.println(row + " i " + col);
 
-		if (row == 1 && col == 1) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 1 && col == 2) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 1 && col == 3) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 1 && col == 4) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 1 && col == 5) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 1 && col == 6) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 1 && col == 7) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 1 && col == 8) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 1 && col == 9) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 1 && col == 10) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 2 && col == 1) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 2 && col == 2) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 2 && col == 3) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 2 && col == 4) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 2 && col == 5) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 2 && col == 6) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 2 && col == 7) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 2 && col == 8) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 2 && col == 9) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 2 && col == 10) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 3 && col == 1) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 3 && col == 2) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 3 && col == 3) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 3 && col == 4) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 3 && col == 5) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 3 && col == 6) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 3 && col == 7) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 3 && col == 8) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 3 && col == 9) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 3 && col == 10) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 4 && col == 1) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 4 && col == 2) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 4 && col == 3) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 4 && col == 4) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 4 && col == 5) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 4 && col == 6) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 4 && col == 7) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 4 && col == 8) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 4 && col == 9) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 4 && col == 10) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 5 && col == 1) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 5 && col == 2) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 5 && col == 3) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 5 && col == 4) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 5 && col == 5) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 5 && col == 6) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 5 && col == 7) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 5 && col == 8) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 5 && col == 9) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 5 && col == 10) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 6 && col == 1) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 6 && col == 2) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 6 && col == 3) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 6 && col == 4) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 6 && col == 5) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 6 && col == 6) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 6 && col == 7) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 6 && col == 8) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 6 && col == 9) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 6 && col == 10) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 7 && col == 1) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 7 && col == 2) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 7 && col == 3) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 7 && col == 4) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 7 && col == 5) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 7 && col == 6) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 7 && col == 7) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 7 && col == 8) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 7 && col == 9) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 7 && col == 10) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 8 && col == 1) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 8 && col == 2) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 8 && col == 3) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 8 && col == 4) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 8 && col == 5) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 8 && col == 6) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 8 && col == 7) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 8 && col == 8) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 8 && col == 9) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 8 && col == 10) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 9 && col == 1) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 9 && col == 2) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 9 && col == 3) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 9 && col == 4) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 9 && col == 5) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 9 && col == 6) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 9 && col == 7) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 9 && col == 8) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 9 && col == 9) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 9 && col == 10) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 10 && col == 1) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 10 && col == 2) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 10 && col == 3) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 10 && col == 4) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 10 && col == 5) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 10 && col == 6) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 10 && col == 7) {
-			System.out.println("A1");
-			source.setBackground(Color.RED);
-		} else if (row == 10 && col == 8) {
-			System.out.println("A2");
-			source.setBackground(Color.RED);
-		} else if (row == 10 && col == 9) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
-		} else if (row == 10 && col == 10) {
-			System.out.println("A3");
-			source.setBackground(Color.RED);
+				source.setBackground(Color.RED);
+				System.out.println("Lotniskowiec");
+				System.out.println("poziomStatku =0");
+				statkiDocelowe++;
+				if (statkiDocelowe == statekNaMapie) {
+					poziomStatku++;
+					statkiDocelowe = 0;
+					statekNaMapie = statki.getNiszczyciel();
+				}
+
+			}
+
+		} else if (poziomStatku == 1) {
+			System.out.println("poziomStatku =1");
+			if (statkiDocelowe == statekNaMapie) {
+				poziomStatku++;
+				statkiDocelowe = 0;
+				statekNaMapie = statki.getKrarzownik();
+
+			} else {
+				int wyslany = 11;
+				tabela.ustawPole(wyslany, row, col);// wysyłanie danych do tabeli.
+				tabela.print();
+				System.out.println(row + " i " + col);
+
+				source.setBackground(Color.RED);
+				System.out.println("Niszczyciel");
+				System.out.println("poziomStatku =1");
+				statkiDocelowe++;
+				if (statkiDocelowe == statekNaMapie) {
+					poziomStatku++;
+					statkiDocelowe = 0;
+					statekNaMapie = statki.getKrarzownik();
+
+				}
+
+			}
+		} else if (poziomStatku == 2) {
+			System.out.println("poziomStatku =2");
+			if (statkiDocelowe == statekNaMapie) {
+				poziomStatku++;
+				statkiDocelowe = 0;
+				statekNaMapie = statki.getKuter();
+
+			} else {
+				int wyslany = 12;
+				tabela.ustawPole(wyslany, row, col);// wysyłanie danych do tabeli.
+				tabela.print();
+				System.out.println(row + " i " + col);
+
+				source.setBackground(Color.RED);
+				System.out.println("Krarzownik");
+				System.out.println("poziomStatku =2");
+				statkiDocelowe++;
+				if (statkiDocelowe == statekNaMapie) {
+					poziomStatku++;
+					statkiDocelowe = 0;
+					statekNaMapie = statki.getKuter();
+
+				}
+
+			}
+		} else if (poziomStatku == 3) {
+			System.out.println("poziomStatku =3");
+			if (statkiDocelowe == statekNaMapie) {
+				poziomStatku++;
+
+			} else {
+				int wyslany = 13;
+				tabela.ustawPole(wyslany, row, col);// wysyłanie danych do tabeli.
+				tabela.print();
+				System.out.println(row + " i " + col);
+
+				source.setBackground(Color.RED);
+				System.out.println("kuter");
+				System.out.println("poziomStatku =3");
+				statkiDocelowe++;
+				if (statkiDocelowe == statekNaMapie) {
+					poziomStatku++;
+
+				}
+
+			}
+		} else {
+			System.out.println("poziomStatku else");
 		}
+
 	}
 }

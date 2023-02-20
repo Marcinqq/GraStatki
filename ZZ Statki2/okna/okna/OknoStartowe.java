@@ -3,6 +3,7 @@ package okna;
 import javax.swing.*;
 
 import mapa.GeneratorMapy;
+import mapa.Statki;
 import poleGry.TabelaGracza;
 
 import java.awt.*;
@@ -56,7 +57,14 @@ public class OknoStartowe extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				JOptionPane.showMessageDialog(null, "Zaznacz 10 pol");
-				GeneratorMapy window = new GeneratorMapy();
+				// lidzba graczy 1 = 1 testy
+				// lidzba graczy 2 = 2
+				// lidzba graczy 3 = vs pc
+
+				int lidzbaGraczy;
+				int wersjaPola = 1;// ilosc statków
+				Statki statki = new Statki(wersjaPola);
+				GeneratorMapy window = new GeneratorMapy(lidzbaGraczy = 1,statki);
 
 			}
 		});

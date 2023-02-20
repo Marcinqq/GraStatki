@@ -7,7 +7,10 @@ public class TabelaGracza {
 	// 1 pole puste
 	// 2 pudło
 	// 3 trariony
-	// 10 statek
+	// 10 lotniskowiec
+	// 11 niszczyciel
+	// 12 krarzownik
+	// 13 kuter
 	public TabelaGracza() {
 		for (int i = 0; i < pole.length; i++) {
 			for (int j = 0; j < pole[i].length; j++) {
