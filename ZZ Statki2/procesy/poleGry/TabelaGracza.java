@@ -30,8 +30,15 @@ public class TabelaGracza {
 
 	}
 
-	public int[][] getPole() {
-		return pole;
+	public int getPole(int i, int j) {
+		
+		if(i>10||j>10||i<1||j<1) {
+			
+		return 11;
+		}
+		
+		
+		return pole[i][j];
 	}
 
 	public void print() {
