@@ -54,19 +54,19 @@ public class GeneratorMapy implements ActionListener {
 
 	public void dopasowanieStatku(int row, int col, int wyslany, JButton source) {
 		System.out.println(row + " i " + col);
-		
-		dlugoscStatku=2;///////////////wdddw
-		
+
+		dlugoscStatku = 2;/////////////// wdddw
+
 		if (tabela.getPole(row, col) == 1) {
 			if (dlugoscStatku == 2) {
-				if (dlugoscStatku + row < 12 && tabela.getPole(dlugoscStatku + row-1, col) == 1) {
+				if (dlugoscStatku + row < 12 && tabela.getPole(dlugoscStatku + row - 1, col) == 1) {
 
 					source.setBackground(Color.red);
-					buttons[dlugoscStatku + row-1][col].setBackground(Color.blue);
+					buttons[dlugoscStatku + row - 1][col].setBackground(Color.blue);
 
-					//tabela.ustawPole(wyslany, row, col);
-					//tabela.print();
-				//	statkiDocelowe++;
+					// tabela.ustawPole(wyslany, row, col);
+					// tabela.print();
+					// statkiDocelowe++;
 
 				}
 			} else if (dlugoscStatku == 3) {
@@ -108,7 +108,11 @@ public class GeneratorMapy implements ActionListener {
 					poziomStatku++;
 					statkiDocelowe = 0;
 					statekNaMapie = statki.getNiszczyciel();
+
 					dlugoscStatku = statki.getNiszczycielDlugosc();
+
+					dlugoscStatku = statki.getNiszczyciel();
+
 				}
 			}
 		} else if (poziomStatku == 1) {
@@ -126,7 +130,11 @@ public class GeneratorMapy implements ActionListener {
 					poziomStatku++;
 					statkiDocelowe = 0;
 					statekNaMapie = statki.getKrarzownik();
+
 					dlugoscStatku = statki.getKrarzownikDlugosc();
+
+					dlugoscStatku = statki.getKrarzownik();
+
 				}
 			}
 		} else if (poziomStatku == 2) {
@@ -134,7 +142,11 @@ public class GeneratorMapy implements ActionListener {
 				poziomStatku++;
 				statkiDocelowe = 0;
 				statekNaMapie = statki.getKuter();
+
 				dlugoscStatku = statki.getKuterDlugosc();
+
+				dlugoscStatku = statki.getNiszczyciel();
+
 			} else {
 				int wyslany = 12;
 
@@ -144,7 +156,11 @@ public class GeneratorMapy implements ActionListener {
 					poziomStatku++;
 					statkiDocelowe = 0;
 					statekNaMapie = statki.getKuter();
+
 					dlugoscStatku = statki.getKuterDlugosc();
+
+					dlugoscStatku = statki.getKuter();
+
 				}
 			}
 		} else if (poziomStatku == 3) {
