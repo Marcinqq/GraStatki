@@ -90,6 +90,7 @@ public class GeneratorMapy implements ActionListener {
 					poziomStatku++;
 					statkiDocelowe = 0;
 					statekNaMapie = statki.getNiszczyciel();
+					dlugoscStatku = statki.getNiszczyciel();
 				}
 
 			}
@@ -115,6 +116,7 @@ public class GeneratorMapy implements ActionListener {
 					poziomStatku++;
 					statkiDocelowe = 0;
 					statekNaMapie = statki.getKrarzownik();
+					dlugoscStatku = statki.getKrarzownik();
 
 				}
 
@@ -125,6 +127,7 @@ public class GeneratorMapy implements ActionListener {
 				poziomStatku++;
 				statkiDocelowe = 0;
 				statekNaMapie = statki.getKuter();
+				dlugoscStatku = statki.getNiszczyciel();
 
 			} else {
 				int wyslany = 12;
@@ -140,6 +143,7 @@ public class GeneratorMapy implements ActionListener {
 					poziomStatku++;
 					statkiDocelowe = 0;
 					statekNaMapie = statki.getKuter();
+					dlugoscStatku = statki.getKuter();
 
 				}
 
