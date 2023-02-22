@@ -7,6 +7,7 @@ public class TabelaGracza {
 	// 1 pole puste
 	// 2 pudło
 	// 3 trariony
+	// 4 cengtrum klikniecia w generatorze
 	// 10 lotniskowiec
 	// 11 niszczyciel
 	// 12 krarzownik
@@ -31,7 +32,7 @@ public class TabelaGracza {
 	}
 
 	public int getPole(int i, int j) {
-		
+		System.out.println("getPole"+i+j);
 		if(i>10||j>10||i<1||j<1) {
 			
 		return 11;

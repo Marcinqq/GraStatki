@@ -18,7 +18,7 @@ public class GeneratorMapy implements ActionListener {
 	private int poziomStatku = 0;
 	Statki statki;
 	int wyslany;
-	private boolean pustePole;
+	private boolean poczatekStatku = true;
 	// boolean hasBlueEyes = false;
 
 // lidzba graczy 1 = 1 testy
@@ -52,6 +52,17 @@ public class GeneratorMapy implements ActionListener {
 
 	}
 
+	public void drukStatku(int row, int col, int wyslany, JButton source) {
+		if (tabela.getPole(row, col) == 65) {
+			while (poczatekStatku) {
+
+			}
+			source.setBackground(Color.black);
+			tabela.ustawPole(wyslany, row, col);
+			poczatekStatku = true;
+		}
+	}
+
 	public void dopasowanieStatku(int row, int col, int wyslany, JButton source) {
 		System.out.println(row + " i " + col);
 
@@ -63,12 +74,49 @@ public class GeneratorMapy implements ActionListener {
 
 					source.setBackground(Color.red);
 					buttons[dlugoscStatku + row - 1][col].setBackground(Color.blue);
-
-					// tabela.ustawPole(wyslany, row, col);
-					// tabela.print();
+					poczatekStatku = false;
+					tabela.ustawPole(4, row, col);
+					tabela.ustawPole(65, dlugoscStatku + row - 1, col);
+					tabela.print();
 					// statkiDocelowe++;
 
 				}
+				System.out.println(dlugoscStatku + row + "dalej " + dlugoscStatku + "-" + row);
+				if (row - dlugoscStatku + 1 > 0 && tabela.getPole(row - dlugoscStatku + 1, col) == 1) {
+
+					source.setBackground(Color.red);
+					buttons[row - dlugoscStatku + 1][col].setBackground(Color.blue);
+					poczatekStatku = false;
+					tabela.ustawPole(4, row, col);
+					tabela.ustawPole(45, row - dlugoscStatku + 1, col);
+					tabela.print();
+					// statkiDocelowe++;
+
+				}
+				if (dlugoscStatku + col < 12 && tabela.getPole(row, dlugoscStatku + col - 1) == 1) {
+
+					source.setBackground(Color.red);
+					buttons[row][dlugoscStatku + col - 1].setBackground(Color.blue);
+					poczatekStatku = false;
+					tabela.ustawPole(4, row, col);
+					tabela.ustawPole(56, row, dlugoscStatku + col - 1);
+					tabela.print();
+					// statkiDocelowe++;
+
+				}
+
+				if (col - dlugoscStatku + 1 > 0 && tabela.getPole(row, col - dlugoscStatku + 1) == 1) {
+
+					source.setBackground(Color.red);
+					buttons[row][col - dlugoscStatku + 1].setBackground(Color.blue);
+					poczatekStatku = false;
+					// tabela.ustawPole(55, row, col);
+					tabela.ustawPole(54, row, col - dlugoscStatku + 1);
+					tabela.print();
+					// statkiDocelowe++;
+
+				}
+
 			} else if (dlugoscStatku == 3) {
 			} else if (dlugoscStatku == 4) {
 			} else if (dlugoscStatku == 5) {
@@ -91,67 +139,53 @@ public class GeneratorMapy implements ActionListener {
 				}
 			}
 		}
-
-		if (poziomStatku == 0) {
-
-			if (statkiDocelowe == statekNaMapie) {
-				poziomStatku++;
-				statkiDocelowe = 0;
-				statekNaMapie = statki.getNiszczyciel();
-				dlugoscStatku = statki.getNiszczycielDlugosc();
-			} else {
-				int wyslany = 10;
-
-				dopasowanieStatku(row, col, wyslany, source);
+		if (poczatekStatku) {
+			if (poziomStatku == 0) {
 
 				if (statkiDocelowe == statekNaMapie) {
 					poziomStatku++;
 					statkiDocelowe = 0;
 					statekNaMapie = statki.getNiszczyciel();
-
 					dlugoscStatku = statki.getNiszczycielDlugosc();
+				} else {
+					int wyslany = 10;
 
-					dlugoscStatku = statki.getNiszczyciel();
+					dopasowanieStatku(row, col, wyslany, source);
 
+					if (statkiDocelowe == statekNaMapie) {
+						poziomStatku++;
+						statkiDocelowe = 0;
+						statekNaMapie = statki.getNiszczyciel();
+
+						dlugoscStatku = statki.getNiszczycielDlugosc();
+
+						dlugoscStatku = statki.getNiszczyciel();
+
+					}
 				}
-			}
-		} else if (poziomStatku == 1) {
-
-			if (statkiDocelowe == statekNaMapie) {
-				poziomStatku++;
-				statkiDocelowe = 0;
-				statekNaMapie = statki.getKrarzownik();
-				dlugoscStatku = statki.getKrarzownikDlugosc();
-			} else {
-				int wyslany = 11;
-				dopasowanieStatku(row, col, wyslany, source);
+			} else if (poziomStatku == 1) {
 
 				if (statkiDocelowe == statekNaMapie) {
 					poziomStatku++;
 					statkiDocelowe = 0;
 					statekNaMapie = statki.getKrarzownik();
-
 					dlugoscStatku = statki.getKrarzownikDlugosc();
+				} else {
+					int wyslany = 11;
+					dopasowanieStatku(row, col, wyslany, source);
 
-					dlugoscStatku = statki.getKrarzownik();
+					if (statkiDocelowe == statekNaMapie) {
+						poziomStatku++;
+						statkiDocelowe = 0;
+						statekNaMapie = statki.getKrarzownik();
 
+						dlugoscStatku = statki.getKrarzownikDlugosc();
+
+						dlugoscStatku = statki.getKrarzownik();
+
+					}
 				}
-			}
-		} else if (poziomStatku == 2) {
-			if (statkiDocelowe == statekNaMapie) {
-				poziomStatku++;
-				statkiDocelowe = 0;
-				statekNaMapie = statki.getKuter();
-
-				dlugoscStatku = statki.getKuterDlugosc();
-
-				dlugoscStatku = statki.getNiszczyciel();
-
-			} else {
-				int wyslany = 12;
-
-				dopasowanieStatku(row, col, wyslany, source);
-
+			} else if (poziomStatku == 2) {
 				if (statkiDocelowe == statekNaMapie) {
 					poziomStatku++;
 					statkiDocelowe = 0;
@@ -159,25 +193,41 @@ public class GeneratorMapy implements ActionListener {
 
 					dlugoscStatku = statki.getKuterDlugosc();
 
-					dlugoscStatku = statki.getKuter();
+					dlugoscStatku = statki.getNiszczyciel();
 
+				} else {
+					int wyslany = 12;
+
+					dopasowanieStatku(row, col, wyslany, source);
+
+					if (statkiDocelowe == statekNaMapie) {
+						poziomStatku++;
+						statkiDocelowe = 0;
+						statekNaMapie = statki.getKuter();
+
+						dlugoscStatku = statki.getKuterDlugosc();
+
+						dlugoscStatku = statki.getKuter();
+
+					}
 				}
-			}
-		} else if (poziomStatku == 3) {
-
-			if (statkiDocelowe == statekNaMapie) {
-				poziomStatku++;
-			} else {
-				int wyslany = 13;
-				dopasowanieStatku(row, col, wyslany, source);
+			} else if (poziomStatku == 3) {
 
 				if (statkiDocelowe == statekNaMapie) {
 					poziomStatku++;
+				} else {
+					int wyslany = 13;
+					dopasowanieStatku(row, col, wyslany, source);
+
+					if (statkiDocelowe == statekNaMapie) {
+						poziomStatku++;
+					}
 				}
+			} else {
+				System.out.println("poziomStatku else konies wstawiania statków");
 			}
 		} else {
-			System.out.println("poziomStatku else konies wstawiania statków");
+			drukStatku(row, col, wyslany, source);
 		}
-
 	}
 }
