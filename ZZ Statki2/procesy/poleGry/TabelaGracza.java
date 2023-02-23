@@ -1,5 +1,9 @@
 package poleGry;
 
+import java.awt.Color;
+
+import javax.swing.JButton;
+
 public class TabelaGracza {
 
 	private int[][] pole = new int[12][12];
@@ -20,6 +24,23 @@ public class TabelaGracza {
 		}
 
 	}
+	public void czyscGracza(JButton[][] buttons) {
+		for (int i = 0; i < pole.length; i++) {
+			for (int j = 0; j < pole[i].length; j++) {
+				if(pole[i][j]==45||pole[i][j]==65||pole[i][j]==54||pole[i][j]==56) {
+					pole[i][j] = 1;
+					buttons[i][j].setBackground(Color.cyan);
+				}
+				
+				
+			}
+		}
+
+	}
+	
+	
+	
+	
 
 	public void ustawPole(int wgrywanie, int i, int j) {
 

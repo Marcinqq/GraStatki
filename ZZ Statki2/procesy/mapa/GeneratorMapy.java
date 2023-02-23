@@ -17,7 +17,7 @@ public class GeneratorMapy implements ActionListener {
 	private int dlugoscStatku = 0;
 	private int poziomStatku = 0;
 	Statki statki;
-	int wyslany;
+	private int wyslany = 9999;
 	private boolean poczatekStatku = true;
 	// boolean hasBlueEyes = false;
 
@@ -39,6 +39,7 @@ public class GeneratorMapy implements ActionListener {
 			for (int j = 1; j < buttons[i].length; j++) {
 				buttons[i][j] = new JButton("");
 				buttons[i][j].addActionListener(this);
+				buttons[i][j].setBackground(Color.cyan);
 				panel.add(buttons[i][j]);
 			}
 		}
@@ -54,11 +55,19 @@ public class GeneratorMapy implements ActionListener {
 
 	public void drukStatku(int row, int col, int wyslany, JButton source) {
 		if (tabela.getPole(row, col) == 65) {
-			while (poczatekStatku) {
-
+			int pentla = dlugoscStatku;
+			while (pentla != 0) {
+				
+				source.setBackground(Color.black);
+				tabela.ustawPole(wyslany, row, col);
+				buttons[row][col].setBackground(Color.black);
+				row--;
+				pentla--;
+				System.out.println("pentl");
 			}
-			source.setBackground(Color.black);
-			tabela.ustawPole(wyslany, row, col);
+			//source.setBackground(Color.black);
+			//tabela.ustawPole(wyslany, row, col);
+			tabela.czyscGracza(buttons);
 			poczatekStatku = true;
 		}
 	}
@@ -66,7 +75,11 @@ public class GeneratorMapy implements ActionListener {
 	public void dopasowanieStatku(int row, int col, int wyslany, JButton source) {
 		System.out.println(row + " i " + col);
 
+		// do zmiany
+
 		dlugoscStatku = 2;/////////////// wdddw
+
+		// do zmiany
 
 		if (tabela.getPole(row, col) == 1) {
 			if (dlugoscStatku == 2) {
@@ -81,7 +94,7 @@ public class GeneratorMapy implements ActionListener {
 					// statkiDocelowe++;
 
 				}
-				System.out.println(dlugoscStatku + row + "dalej " + dlugoscStatku + "-" + row);
+				
 				if (row - dlugoscStatku + 1 > 0 && tabela.getPole(row - dlugoscStatku + 1, col) == 1) {
 
 					source.setBackground(Color.red);
@@ -135,6 +148,7 @@ public class GeneratorMapy implements ActionListener {
 				if (source == buttons[i][j]) {
 					row = i;
 					col = j;
+					
 					break;
 				}
 			}
@@ -148,7 +162,7 @@ public class GeneratorMapy implements ActionListener {
 					statekNaMapie = statki.getNiszczyciel();
 					dlugoscStatku = statki.getNiszczycielDlugosc();
 				} else {
-					int wyslany = 10;
+					wyslany = 10;
 
 					dopasowanieStatku(row, col, wyslany, source);
 
@@ -171,7 +185,7 @@ public class GeneratorMapy implements ActionListener {
 					statekNaMapie = statki.getKrarzownik();
 					dlugoscStatku = statki.getKrarzownikDlugosc();
 				} else {
-					int wyslany = 11;
+					wyslany = 11;
 					dopasowanieStatku(row, col, wyslany, source);
 
 					if (statkiDocelowe == statekNaMapie) {
@@ -196,7 +210,7 @@ public class GeneratorMapy implements ActionListener {
 					dlugoscStatku = statki.getNiszczyciel();
 
 				} else {
-					int wyslany = 12;
+					wyslany = 12;
 
 					dopasowanieStatku(row, col, wyslany, source);
 
