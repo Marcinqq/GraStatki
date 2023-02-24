@@ -57,44 +57,101 @@ public class GeneratorMapy implements ActionListener {
 		if (tabela.getPole(row, col) == 65) {
 			int pentla = dlugoscStatku;
 			while (pentla != 0) {
-				
 				source.setBackground(Color.black);
 				tabela.ustawPole(wyslany, row, col);
 				buttons[row][col].setBackground(Color.black);
 				row--;
 				pentla--;
-				System.out.println("pentl");
 			}
-			//source.setBackground(Color.black);
-			//tabela.ustawPole(wyslany, row, col);
+			statkiDocelowe++;
+			tabela.czyscGracza(buttons);
+			poczatekStatku = true;
+		} else if (tabela.getPole(row, col) == 45) {
+			int pentla = dlugoscStatku;
+			while (pentla != 0) {
+				source.setBackground(Color.black);
+				tabela.ustawPole(wyslany, row, col);
+				buttons[row][col].setBackground(Color.black);
+				row++;
+				pentla--;
+			}
+			statkiDocelowe++;
+			tabela.czyscGracza(buttons);
+			poczatekStatku = true;
+		} else if (tabela.getPole(row, col) == 56) {
+			int pentla = dlugoscStatku;
+			while (pentla != 0) {
+				source.setBackground(Color.black);
+				tabela.ustawPole(wyslany, row, col);
+				buttons[row][col].setBackground(Color.black);
+				col--;
+				pentla--;
+			}
+			statkiDocelowe++;
+			tabela.czyscGracza(buttons);
+			poczatekStatku = true;
+		} else if (tabela.getPole(row, col) == 54) {
+			int pentla = dlugoscStatku;
+			while (pentla != 0) {
+				source.setBackground(Color.black);
+				tabela.ustawPole(wyslany, row, col);
+				buttons[row][col].setBackground(Color.black);
+				col++;
+				pentla--;
+			}
+			statkiDocelowe++;
+			tabela.czyscGracza(buttons);
+			poczatekStatku = true;
+		} else if (tabela.getPole(row, col) == 4) {
 			tabela.czyscGracza(buttons);
 			poczatekStatku = true;
 		}
 	}
 
 	public void dopasowanieStatku(int row, int col, int wyslany, JButton source) {
-		System.out.println(row + " i " + col);
-
-		// do zmiany
-
-		dlugoscStatku = 2;/////////////// wdddw
-
-		// do zmiany
-
 		if (tabela.getPole(row, col) == 1) {
 			if (dlugoscStatku == 2) {
 				if (dlugoscStatku + row < 12 && tabela.getPole(dlugoscStatku + row - 1, col) == 1) {
-
 					source.setBackground(Color.red);
 					buttons[dlugoscStatku + row - 1][col].setBackground(Color.blue);
 					poczatekStatku = false;
 					tabela.ustawPole(4, row, col);
 					tabela.ustawPole(65, dlugoscStatku + row - 1, col);
 					tabela.print();
-					// statkiDocelowe++;
-
 				}
-				
+				if (row - dlugoscStatku + 1 > 0 && tabela.getPole(row - dlugoscStatku + 1, col) == 1) {
+					source.setBackground(Color.red);
+					buttons[row - dlugoscStatku + 1][col].setBackground(Color.blue);
+					poczatekStatku = false;
+					tabela.ustawPole(4, row, col);
+					tabela.ustawPole(45, row - dlugoscStatku + 1, col);
+					tabela.print();
+				}
+				if (dlugoscStatku + col < 12 && tabela.getPole(row, dlugoscStatku + col - 1) == 1) {
+					source.setBackground(Color.red);
+					buttons[row][dlugoscStatku + col - 1].setBackground(Color.blue);
+					poczatekStatku = false;
+					tabela.ustawPole(4, row, col);
+					tabela.ustawPole(56, row, dlugoscStatku + col - 1);
+					tabela.print();
+				}
+				if (col - dlugoscStatku + 1 > 0 && tabela.getPole(row, col - dlugoscStatku + 1) == 1) {
+					source.setBackground(Color.red);
+					buttons[row][col - dlugoscStatku + 1].setBackground(Color.blue);
+					poczatekStatku = false;
+					tabela.ustawPole(55, row, col);
+					tabela.ustawPole(54, row, col - dlugoscStatku + 1);
+					tabela.print();
+				}
+			} else {
+				if (dlugoscStatku + row < 12 && tabela.getPole(dlugoscStatku + row - 1, col) == 1) {
+					source.setBackground(Color.red);
+					buttons[dlugoscStatku + row - 1][col].setBackground(Color.blue);
+					poczatekStatku = false;
+					tabela.ustawPole(4, row, col);
+					tabela.ustawPole(65, dlugoscStatku + row - 1, col);
+					tabela.print();
+				}
 				if (row - dlugoscStatku + 1 > 0 && tabela.getPole(row - dlugoscStatku + 1, col) == 1) {
 
 					source.setBackground(Color.red);
@@ -103,37 +160,23 @@ public class GeneratorMapy implements ActionListener {
 					tabela.ustawPole(4, row, col);
 					tabela.ustawPole(45, row - dlugoscStatku + 1, col);
 					tabela.print();
-					// statkiDocelowe++;
-
 				}
 				if (dlugoscStatku + col < 12 && tabela.getPole(row, dlugoscStatku + col - 1) == 1) {
-
 					source.setBackground(Color.red);
 					buttons[row][dlugoscStatku + col - 1].setBackground(Color.blue);
 					poczatekStatku = false;
 					tabela.ustawPole(4, row, col);
 					tabela.ustawPole(56, row, dlugoscStatku + col - 1);
 					tabela.print();
-					// statkiDocelowe++;
-
 				}
-
 				if (col - dlugoscStatku + 1 > 0 && tabela.getPole(row, col - dlugoscStatku + 1) == 1) {
-
 					source.setBackground(Color.red);
 					buttons[row][col - dlugoscStatku + 1].setBackground(Color.blue);
 					poczatekStatku = false;
-					// tabela.ustawPole(55, row, col);
 					tabela.ustawPole(54, row, col - dlugoscStatku + 1);
 					tabela.print();
-					// statkiDocelowe++;
-
 				}
-
-			} else if (dlugoscStatku == 3) {
-			} else if (dlugoscStatku == 4) {
-			} else if (dlugoscStatku == 5) {
-			}
+			} 
 		}
 	}
 
@@ -141,21 +184,17 @@ public class GeneratorMapy implements ActionListener {
 		JButton source = (JButton) e.getSource();
 		int row = -1;
 		int col = -1;
-
-		// Szukamy klikniętego przycisku w tablicy przycisków
 		for (int i = 0; i < buttons.length; i++) {
 			for (int j = 0; j < buttons[i].length; j++) {
 				if (source == buttons[i][j]) {
 					row = i;
 					col = j;
-					
 					break;
 				}
 			}
 		}
 		if (poczatekStatku) {
 			if (poziomStatku == 0) {
-
 				if (statkiDocelowe == statekNaMapie) {
 					poziomStatku++;
 					statkiDocelowe = 0;
@@ -163,22 +202,16 @@ public class GeneratorMapy implements ActionListener {
 					dlugoscStatku = statki.getNiszczycielDlugosc();
 				} else {
 					wyslany = 10;
-
 					dopasowanieStatku(row, col, wyslany, source);
-
 					if (statkiDocelowe == statekNaMapie) {
 						poziomStatku++;
 						statkiDocelowe = 0;
 						statekNaMapie = statki.getNiszczyciel();
-
 						dlugoscStatku = statki.getNiszczycielDlugosc();
-
-						dlugoscStatku = statki.getNiszczyciel();
-
 					}
 				}
-			} else if (poziomStatku == 1) {
-
+			}
+			if (poziomStatku == 1) {
 				if (statkiDocelowe == statekNaMapie) {
 					poziomStatku++;
 					statkiDocelowe = 0;
@@ -187,58 +220,44 @@ public class GeneratorMapy implements ActionListener {
 				} else {
 					wyslany = 11;
 					dopasowanieStatku(row, col, wyslany, source);
-
 					if (statkiDocelowe == statekNaMapie) {
 						poziomStatku++;
 						statkiDocelowe = 0;
 						statekNaMapie = statki.getKrarzownik();
-
 						dlugoscStatku = statki.getKrarzownikDlugosc();
-
-						dlugoscStatku = statki.getKrarzownik();
-
 					}
 				}
-			} else if (poziomStatku == 2) {
+			}
+			if (poziomStatku == 2) {
 				if (statkiDocelowe == statekNaMapie) {
 					poziomStatku++;
 					statkiDocelowe = 0;
 					statekNaMapie = statki.getKuter();
-
 					dlugoscStatku = statki.getKuterDlugosc();
-
-					dlugoscStatku = statki.getNiszczyciel();
-
 				} else {
 					wyslany = 12;
-
 					dopasowanieStatku(row, col, wyslany, source);
-
 					if (statkiDocelowe == statekNaMapie) {
 						poziomStatku++;
 						statkiDocelowe = 0;
 						statekNaMapie = statki.getKuter();
-
 						dlugoscStatku = statki.getKuterDlugosc();
-
-						dlugoscStatku = statki.getKuter();
-
 					}
 				}
-			} else if (poziomStatku == 3) {
-
+			}
+			if (poziomStatku == 3) {
 				if (statkiDocelowe == statekNaMapie) {
 					poziomStatku++;
 				} else {
 					int wyslany = 13;
 					dopasowanieStatku(row, col, wyslany, source);
-
 					if (statkiDocelowe == statekNaMapie) {
 						poziomStatku++;
 					}
 				}
-			} else {
-				System.out.println("poziomStatku else konies wstawiania statków");
+			} else if (poziomStatku >= 4) {
+				System.out.println("poziomStatku else koniec wstawiania statków pora włączyć grę");
+				tabela.print();
 			}
 		} else {
 			drukStatku(row, col, wyslany, source);

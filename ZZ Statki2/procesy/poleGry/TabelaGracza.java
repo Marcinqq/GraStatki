@@ -27,7 +27,7 @@ public class TabelaGracza {
 	public void czyscGracza(JButton[][] buttons) {
 		for (int i = 0; i < pole.length; i++) {
 			for (int j = 0; j < pole[i].length; j++) {
-				if(pole[i][j]==45||pole[i][j]==65||pole[i][j]==54||pole[i][j]==56) {
+				if(pole[i][j]==45||pole[i][j]==65||pole[i][j]==54||pole[i][j]==56||pole[i][j]==4) {
 					pole[i][j] = 1;
 					buttons[i][j].setBackground(Color.cyan);
 				}
@@ -53,7 +53,7 @@ public class TabelaGracza {
 	}
 
 	public int getPole(int i, int j) {
-		System.out.println("getPole"+i+j);
+		
 		if(i>10||j>10||i<1||j<1) {
 			
 		return 11;
@@ -64,6 +64,8 @@ public class TabelaGracza {
 	}
 
 	public void print() {
+		System.out.println();
+		System.out.println();
 		for (int i = 0; i < pole.length; i++) {
 			for (int j = 0; j < pole[i].length; j++) {
 				System.out.print(pole[i][j] + " ");
