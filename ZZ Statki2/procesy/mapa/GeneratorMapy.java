@@ -19,7 +19,7 @@ public class GeneratorMapy implements ActionListener {
 	Statki statki;
 	private int wyslany = 9999;
 	private boolean poczatekStatku = true;
-	// boolean hasBlueEyes = false;
+	privatw boolean wnetrzeStatku = false;
 
 // lidzba graczy 1 = 1 testy
 	// lidzba graczy 2 = 2
@@ -145,6 +145,20 @@ public class GeneratorMapy implements ActionListener {
 				}
 			} else {
 				if (dlugoscStatku + row < 12 && tabela.getPole(dlugoscStatku + row - 1, col) == 1) {
+
+					wnetrzeStatku = true; \\ true
+					int pentla = dlugoscStatku;
+					
+						while (pentla != 0) {
+							if(tabela.getPole(row, col) != 1){
+							wnetrzeStatku = false;
+							}
+						row++;
+						pentla--;
+						}
+					
+					
+					
 					source.setBackground(Color.red);
 					buttons[dlugoscStatku + row - 1][col].setBackground(Color.blue);
 					poczatekStatku = false;
@@ -154,27 +168,74 @@ public class GeneratorMapy implements ActionListener {
 				}
 				if (row - dlugoscStatku + 1 > 0 && tabela.getPole(row - dlugoscStatku + 1, col) == 1) {
 
+					
+					wnetrzeStatku = true; \\ true
+					int pentla = dlugoscStatku;
+					
+						while (pentla != 0) {
+							if(tabela.getPole(row, col) != 1){
+							wnetrzeStatku = false;
+							}
+						row--;
+						pentla--;
+						}
+					
+					
+					if(wnetrzeStatku){
 					source.setBackground(Color.red);
 					buttons[row - dlugoscStatku + 1][col].setBackground(Color.blue);
 					poczatekStatku = false;
 					tabela.ustawPole(4, row, col);
 					tabela.ustawPole(45, row - dlugoscStatku + 1, col);
 					tabela.print();
+					}
 				}
 				if (dlugoscStatku + col < 12 && tabela.getPole(row, dlugoscStatku + col - 1) == 1) {
+					
+					
+					wnetrzeStatku = true; \\ true
+					int pentla = dlugoscStatku;
+					
+						while (pentla != 0) {
+							if(tabela.getPole(row, col) != 1){
+							wnetrzeStatku = false;
+							}
+						col++;
+						pentla--;
+						}
+					
+					
+					if(wnetrzeStatku){
 					source.setBackground(Color.red);
 					buttons[row][dlugoscStatku + col - 1].setBackground(Color.blue);
 					poczatekStatku = false;
 					tabela.ustawPole(4, row, col);
 					tabela.ustawPole(56, row, dlugoscStatku + col - 1);
 					tabela.print();
+					}
 				}
 				if (col - dlugoscStatku + 1 > 0 && tabela.getPole(row, col - dlugoscStatku + 1) == 1) {
+					
+					
+					wnetrzeStatku = true; \\ true
+					int pentla = dlugoscStatku;
+					
+						while (pentla != 0) {
+							if(tabela.getPole(row, col) != 1){
+							wnetrzeStatku = false;
+							}
+						col--;
+						pentla--;
+						}
+					
+					
+					if(wnetrzeStatku){
 					source.setBackground(Color.red);
 					buttons[row][col - dlugoscStatku + 1].setBackground(Color.blue);
 					poczatekStatku = false;
 					tabela.ustawPole(54, row, col - dlugoscStatku + 1);
 					tabela.print();
+					}
 				}
 			} 
 		}
