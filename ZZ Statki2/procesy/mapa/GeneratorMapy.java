@@ -19,7 +19,8 @@ public class GeneratorMapy implements ActionListener {
 	Statki statki;
 	private int wyslany = 9999;
 	private boolean poczatekStatku = true;
-	privatw boolean wnetrzeStatku = false;
+	private boolean wnetrzeStatku = false;
+	private boolean punktKlikniecia = false;
 
 // lidzba graczy 1 = 1 testy
 	// lidzba graczy 2 = 2
@@ -53,6 +54,7 @@ public class GeneratorMapy implements ActionListener {
 
 	}
 
+// wdrukowyanie czarnego pola
 	public void drukStatku(int row, int col, int wyslany, JButton source) {
 		if (tabela.getPole(row, col) == 65) {
 			int pentla = dlugoscStatku;
@@ -145,99 +147,103 @@ public class GeneratorMapy implements ActionListener {
 				}
 			} else {
 				if (dlugoscStatku + row < 12 && tabela.getPole(dlugoscStatku + row - 1, col) == 1) {
-
-					wnetrzeStatku = true; \\ true
-					int pentla = dlugoscStatku;
-					
-						while (pentla != 0) {
-							if(tabela.getPole(row, col) != 1){
+					System.out.println("statek dlurzyszy niż 2");
+					wnetrzeStatku = true; // true
+					int pentla = dlugoscStatku ;
+					System.out.println(wnetrzeStatku + " wnetrzeStatku");
+					System.out.println(dlugoscStatku + "dlugoscStatku");
+					System.out.println(pentla + "pentla przed");
+					while (pentla != 0) {
+						System.out.println(pentla + "pentla w");
+						if (tabela.getPole(row, col) != 1) {
+							System.out.println(tabela.getPole(row, col) + "tabela.getPole(row, col)");
+							System.out.println(wnetrzeStatku + " wnetrzeStatku");
 							wnetrzeStatku = false;
-							}
+						}
 						row++;
 						pentla--;
-						}
-					
-					
-					
-					source.setBackground(Color.red);
-					buttons[dlugoscStatku + row - 1][col].setBackground(Color.blue);
-					poczatekStatku = false;
-					tabela.ustawPole(4, row, col);
-					tabela.ustawPole(65, dlugoscStatku + row - 1, col);
-					tabela.print();
+					}
+					row = row - dlugoscStatku;
+					if (wnetrzeStatku) {
+						source.setBackground(Color.red);
+						buttons[dlugoscStatku + row - 1][col].setBackground(Color.blue);
+						poczatekStatku = false;
+						punktKlikniecia= true;
+						tabela.ustawPole(65, dlugoscStatku + row - 1, col);
+						tabela.print();
+					}
 				}
 				if (row - dlugoscStatku + 1 > 0 && tabela.getPole(row - dlugoscStatku + 1, col) == 1) {
-
-					
-					wnetrzeStatku = true; \\ true
+					System.out.println("statek dlurzyszy niż 2");
+					wnetrzeStatku = true; // true
 					int pentla = dlugoscStatku;
-					
-						while (pentla != 0) {
-							if(tabela.getPole(row, col) != 1){
+
+					while (pentla != 0) {
+						if (tabela.getPole(row, col) != 1) {
 							wnetrzeStatku = false;
-							}
+						}
 						row--;
 						pentla--;
-						}
-					
-					
-					if(wnetrzeStatku){
-					source.setBackground(Color.red);
-					buttons[row - dlugoscStatku + 1][col].setBackground(Color.blue);
-					poczatekStatku = false;
-					tabela.ustawPole(4, row, col);
-					tabela.ustawPole(45, row - dlugoscStatku + 1, col);
-					tabela.print();
+					}
+					row = row + dlugoscStatku;
+					if (wnetrzeStatku) {
+						source.setBackground(Color.red);
+						buttons[row - dlugoscStatku + 1][col].setBackground(Color.blue);
+						poczatekStatku = false;
+						punktKlikniecia= true;
+						tabela.ustawPole(45, row - dlugoscStatku + 1, col);
+						tabela.print();
 					}
 				}
 				if (dlugoscStatku + col < 12 && tabela.getPole(row, dlugoscStatku + col - 1) == 1) {
-					
-					
-					wnetrzeStatku = true; \\ true
+					System.out.println("statek dlurzyszy niż 2");
+					wnetrzeStatku = true; // true
 					int pentla = dlugoscStatku;
-					
-						while (pentla != 0) {
-							if(tabela.getPole(row, col) != 1){
+
+					while (pentla != 0) {
+						if (tabela.getPole(row, col) != 1) {
 							wnetrzeStatku = false;
-							}
+						}
 						col++;
 						pentla--;
-						}
-					
-					
-					if(wnetrzeStatku){
-					source.setBackground(Color.red);
-					buttons[row][dlugoscStatku + col - 1].setBackground(Color.blue);
-					poczatekStatku = false;
-					tabela.ustawPole(4, row, col);
-					tabela.ustawPole(56, row, dlugoscStatku + col - 1);
-					tabela.print();
+					}
+					col = col - dlugoscStatku;
+					if (wnetrzeStatku) {
+						source.setBackground(Color.red);
+						buttons[row][dlugoscStatku + col - 1].setBackground(Color.blue);
+						poczatekStatku = false;
+						punktKlikniecia= true;
+						tabela.ustawPole(56, row, dlugoscStatku + col - 1);
+						tabela.print();
 					}
 				}
 				if (col - dlugoscStatku + 1 > 0 && tabela.getPole(row, col - dlugoscStatku + 1) == 1) {
-					
-					
-					wnetrzeStatku = true; \\ true
+					System.out.println("statek dlurzyszy niż 2");
+					wnetrzeStatku = true; // true
 					int pentla = dlugoscStatku;
-					
-						while (pentla != 0) {
-							if(tabela.getPole(row, col) != 1){
+
+					while (pentla != 0) {
+						if (tabela.getPole(row, col) != 1) {
 							wnetrzeStatku = false;
-							}
+						}
 						col--;
 						pentla--;
-						}
-					
-					
-					if(wnetrzeStatku){
-					source.setBackground(Color.red);
-					buttons[row][col - dlugoscStatku + 1].setBackground(Color.blue);
-					poczatekStatku = false;
-					tabela.ustawPole(54, row, col - dlugoscStatku + 1);
-					tabela.print();
+					}
+					col = col + dlugoscStatku;
+					if (wnetrzeStatku) {
+						source.setBackground(Color.red);
+						buttons[row][col - dlugoscStatku + 1].setBackground(Color.blue);
+						poczatekStatku = false;
+						punktKlikniecia= true;
+						tabela.ustawPole(54, row, col - dlugoscStatku + 1);
+						tabela.print();
 					}
 				}
-			} 
+				if(punktKlikniecia) {
+					tabela.ustawPole(4, row, col);
+					punktKlikniecia= false;
+				}
+			}
 		}
 	}
 
