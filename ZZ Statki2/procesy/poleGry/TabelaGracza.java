@@ -19,6 +19,7 @@ public class TabelaGracza {
 	public TabelaGracza() {
 		czyscTabela();
 	}
+
 	public void czyscTabela() {
 		for (int i = 0; i < pole.length; i++) {
 			for (int j = 0; j < pole[i].length; j++) {
@@ -26,22 +27,20 @@ public class TabelaGracza {
 			}
 		}
 	}
+
 	public void czyscGracza(JButton[][] buttons) {
 		for (int i = 0; i < pole.length; i++) {
 			for (int j = 0; j < pole[i].length; j++) {
-				if(pole[i][j]==45||pole[i][j]==65||pole[i][j]==54||pole[i][j]==56||pole[i][j]==4) {
+				if (pole[i][j] == 45 || pole[i][j] == 65 || pole[i][j] == 54 || pole[i][j] == 56 || pole[i][j] == 4) {
 					pole[i][j] = 1;
 					buttons[i][j].setBackground(Color.cyan);
 				}
-				
-				
+
 			}
 		}
 
 	}
-	
-	
-	
+
 	
 
 	public void ustawPole(int wgrywanie, int i, int j) {
@@ -55,13 +54,12 @@ public class TabelaGracza {
 	}
 
 	public int getPole(int i, int j) {
-		
-		if(i>10||j>10||i<1||j<1) {
-			
-		return 11;
+
+		if (i > 10 || j > 10 || i < 1 || j < 1) {
+
+			return 11;
 		}
-		
-		
+
 		return pole[i][j];
 	}
 

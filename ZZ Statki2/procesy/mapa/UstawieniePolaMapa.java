@@ -245,7 +245,7 @@ public class UstawieniePolaMapa implements ActionListener {
 		if (lidzbaGraczy == 2) {
 			czyszczenieGuzikow();
 			tabelaGracz1 = tabela;
-			tabela.czyscTabela();
+			tabela = new TabelaGracza();		
 			statekNaMapie = statki.getLotniskowiec();
 			dlugoscStatku = statki.getLotniskowiecDlugosc();
 			poczatekStatku = true;
@@ -253,11 +253,12 @@ public class UstawieniePolaMapa implements ActionListener {
 			statkiDocelowe = 0;
 			frame.setTitle("Gracz2 wybiera okrety");
 			JOptionPane.showMessageDialog(null, "Gracz  2 ustawia statki");
-			lidzbaGraczy++;
+			lidzbaGraczy++;			
 		} else if (lidzbaGraczy == 3) {
 			frame.setVisible(false);
 			JOptionPane.showMessageDialog(null, "Generuje mape dla 2 graczy");
 			mechanikaGryPVP planszaGracza = new mechanikaGryPVP(tabelaGracz1, tabela);
+			
 		} else {
 			JOptionPane.showMessageDialog(null, "Generuje mape dla 1 gracza");
 		}
@@ -325,6 +326,9 @@ public class UstawieniePolaMapa implements ActionListener {
 						statkiDocelowe = 0;
 						statekNaMapie = statki.getKuter();
 						dlugoscStatku = statki.getKuterDlugosc();
+						
+						
+						
 					}
 				}
 			}
