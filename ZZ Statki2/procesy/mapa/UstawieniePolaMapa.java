@@ -2,14 +2,16 @@ package mapa;
 
 import javax.swing.*;
 
+import graPvP.mechanikaGryPVP;
 import okna.PasekDoOkenek;
+import okna.PlanszaGracza;
 import poleGry.TabelaGracza;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GeneratorMapy implements ActionListener {
+public class UstawieniePolaMapa implements ActionListener {
 	private JButton[][] buttons;
 	private TabelaGracza tabela = new TabelaGracza();
 	private TabelaGracza tabelaGracz1 = new TabelaGracza();
@@ -17,6 +19,7 @@ public class GeneratorMapy implements ActionListener {
 	private int statekNaMapie = 0;
 	private int dlugoscStatku = 0;
 	private int poziomStatku = 0;
+	private int lidzbaGraczy;
 	Statki statki;
 	private int wyslany = 9999;
 	private boolean poczatekStatku = true;
@@ -24,15 +27,14 @@ public class GeneratorMapy implements ActionListener {
 	private boolean punktKlikniecia = false;
 	JFrame frame = new JFrame("Gracz1 okrenty");
 
-// lidzba graczy 1 = 1 testy
+// lidzba graczy 1 = 1 vs pc
 	// lidzba graczy 2 = 2
-	// lidzba graczy 3 = vs pc
-	public GeneratorMapy(int lidzbaGraczy, Statki statki) {
+	// lidzba graczy 3 = test
+	public UstawieniePolaMapa(int lidzbaGraczy, Statki statki) {
 
 		PasekDoOkenek mainMenuBar = new PasekDoOkenek();
 		JMenuBar menuBar = mainMenuBar.getJMenuBar();
 
-		
 		frame.setJMenuBar(menuBar);
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(10, 10));
@@ -47,6 +49,7 @@ public class GeneratorMapy implements ActionListener {
 			}
 		}
 		this.statki = statki;
+		this.lidzbaGraczy = lidzbaGraczy;
 		statekNaMapie = statki.getLotniskowiec();
 		dlugoscStatku = statki.getLotniskowiecDlugosc();
 		frame.add(panel);
@@ -54,15 +57,12 @@ public class GeneratorMapy implements ActionListener {
 		frame.pack();
 		frame.setSize(500, 500);
 		frame.setVisible(true);
-
 	}
 
 	public void czyszczenieGuzikow() {
 		for (int i = 1; i < buttons.length; i++) {
 			for (int j = 1; j < buttons[i].length; j++) {
-
 				buttons[i][j].setBackground(Color.cyan);
-
 			}
 		}
 	}
@@ -132,7 +132,6 @@ public class GeneratorMapy implements ActionListener {
 					poczatekStatku = false;
 					tabela.ustawPole(4, row, col);
 					tabela.ustawPole(65, dlugoscStatku + row - 1, col);
-					tabela.print();
 				}
 				if (row - dlugoscStatku + 1 > 0 && tabela.getPole(row - dlugoscStatku + 1, col) == 1) {
 					source.setBackground(Color.red);
@@ -140,7 +139,7 @@ public class GeneratorMapy implements ActionListener {
 					poczatekStatku = false;
 					tabela.ustawPole(4, row, col);
 					tabela.ustawPole(45, row - dlugoscStatku + 1, col);
-					tabela.print();
+
 				}
 				if (dlugoscStatku + col < 12 && tabela.getPole(row, dlugoscStatku + col - 1) == 1) {
 					source.setBackground(Color.red);
@@ -148,7 +147,7 @@ public class GeneratorMapy implements ActionListener {
 					poczatekStatku = false;
 					tabela.ustawPole(4, row, col);
 					tabela.ustawPole(56, row, dlugoscStatku + col - 1);
-					tabela.print();
+
 				}
 				if (col - dlugoscStatku + 1 > 0 && tabela.getPole(row, col - dlugoscStatku + 1) == 1) {
 					source.setBackground(Color.red);
@@ -156,21 +155,13 @@ public class GeneratorMapy implements ActionListener {
 					poczatekStatku = false;
 					tabela.ustawPole(55, row, col);
 					tabela.ustawPole(54, row, col - dlugoscStatku + 1);
-					tabela.print();
 				}
 			} else {
 				if (dlugoscStatku + row < 12 && tabela.getPole(dlugoscStatku + row - 1, col) == 1) {
-					System.out.println("statek dlurzyszy niż 2");
 					wnetrzeStatku = true; // true
 					int pentla = dlugoscStatku;
-					System.out.println(wnetrzeStatku + " wnetrzeStatku");
-					System.out.println(dlugoscStatku + "dlugoscStatku");
-					System.out.println(pentla + "pentla przed");
 					while (pentla != 0) {
-						System.out.println(pentla + "pentla w");
 						if (tabela.getPole(row, col) != 1) {
-							System.out.println(tabela.getPole(row, col) + "tabela.getPole(row, col)");
-							System.out.println(wnetrzeStatku + " wnetrzeStatku");
 							wnetrzeStatku = false;
 						}
 						row++;
@@ -183,14 +174,11 @@ public class GeneratorMapy implements ActionListener {
 						poczatekStatku = false;
 						punktKlikniecia = true;
 						tabela.ustawPole(65, dlugoscStatku + row - 1, col);
-						tabela.print();
 					}
 				}
 				if (row - dlugoscStatku + 1 > 0 && tabela.getPole(row - dlugoscStatku + 1, col) == 1) {
-					System.out.println("statek dlurzyszy niż 2");
 					wnetrzeStatku = true; // true
 					int pentla = dlugoscStatku;
-
 					while (pentla != 0) {
 						if (tabela.getPole(row, col) != 1) {
 							wnetrzeStatku = false;
@@ -205,14 +193,11 @@ public class GeneratorMapy implements ActionListener {
 						poczatekStatku = false;
 						punktKlikniecia = true;
 						tabela.ustawPole(45, row - dlugoscStatku + 1, col);
-						tabela.print();
 					}
 				}
 				if (dlugoscStatku + col < 12 && tabela.getPole(row, dlugoscStatku + col - 1) == 1) {
-					System.out.println("statek dlurzyszy niż 2");
 					wnetrzeStatku = true; // true
 					int pentla = dlugoscStatku;
-
 					while (pentla != 0) {
 						if (tabela.getPole(row, col) != 1) {
 							wnetrzeStatku = false;
@@ -227,14 +212,11 @@ public class GeneratorMapy implements ActionListener {
 						poczatekStatku = false;
 						punktKlikniecia = true;
 						tabela.ustawPole(56, row, dlugoscStatku + col - 1);
-						tabela.print();
 					}
 				}
 				if (col - dlugoscStatku + 1 > 0 && tabela.getPole(row, col - dlugoscStatku + 1) == 1) {
-					System.out.println("statek dlurzyszy niż 2");
 					wnetrzeStatku = true; // true
 					int pentla = dlugoscStatku;
-
 					while (pentla != 0) {
 						if (tabela.getPole(row, col) != 1) {
 							wnetrzeStatku = false;
@@ -249,7 +231,6 @@ public class GeneratorMapy implements ActionListener {
 						poczatekStatku = false;
 						punktKlikniecia = true;
 						tabela.ustawPole(54, row, col - dlugoscStatku + 1);
-						tabela.print();
 					}
 				}
 				if (punktKlikniecia) {
@@ -257,6 +238,28 @@ public class GeneratorMapy implements ActionListener {
 					punktKlikniecia = false;
 				}
 			}
+		}
+	}
+
+	public void koniecStatkow() {
+		if (lidzbaGraczy == 2) {
+			czyszczenieGuzikow();
+			tabelaGracz1 = tabela;
+			tabela.czyscTabela();
+			statekNaMapie = statki.getLotniskowiec();
+			dlugoscStatku = statki.getLotniskowiecDlugosc();
+			poczatekStatku = true;
+			poziomStatku = 0;
+			statkiDocelowe = 0;
+			frame.setTitle("Gracz2 wybiera okrety");
+			JOptionPane.showMessageDialog(null, "Gracz  2 ustawia statki");
+			lidzbaGraczy++;
+		} else if (lidzbaGraczy == 3) {
+			frame.setVisible(false);
+			JOptionPane.showMessageDialog(null, "Generuje mape dla 2 graczy");
+			mechanikaGryPVP planszaGracza = new mechanikaGryPVP(tabelaGracz1, tabela);
+		} else {
+			JOptionPane.showMessageDialog(null, "Generuje mape dla 1 gracza");
 		}
 	}
 
@@ -337,23 +340,7 @@ public class GeneratorMapy implements ActionListener {
 				}
 			}
 			if (poziomStatku >= 4) {
-
-				System.out.println("poziomStatku else koniec wstawiania statków pora włączyć grę");
-				tabela.print();
-				czyszczenieGuzikow();
-
-				tabelaGracz1 = tabela;
-				tabelaGracz1.print();
-				tabela.czyscTabela();
-				tabela.print();
-				statekNaMapie = statki.getLotniskowiec();
-				dlugoscStatku = statki.getLotniskowiecDlugosc();
-				poczatekStatku = true;
-				poziomStatku = 0;
-				statkiDocelowe = 0;
-				System.out.println(statekNaMapie);
-				frame.setTitle("Gracz2 wybiera okrety");
-				JOptionPane.showMessageDialog(null, "Gracz  2 ustawia statki");
+				koniecStatkow();
 			}
 		} else {
 			drukStatku(row, col, wyslany, source);

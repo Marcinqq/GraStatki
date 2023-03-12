@@ -8,7 +8,7 @@ import java.awt.event.WindowEvent;
 
 public class PasekDoOkenek {
 	public JMenuBar getJMenuBar() {
-		// GeneratorMapy planszaGracza = new GeneratorMapy();
+		// UstawieniePolaMapa planszaGracza = new UstawieniePolaMapa();
 		// JFrame frame = planszaGracza.getJFrame();
 		JMenuBar menuBar = new JMenuBar();
 

@@ -2,7 +2,7 @@ package okna;
 
 import javax.swing.*;
 
-import mapa.GeneratorMapy;
+import mapa.UstawieniePolaMapa;
 import mapa.Statki;
 import poleGry.TabelaGracza;
 
@@ -33,14 +33,15 @@ public class OknoStartowe extends JFrame {
 		pvpButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				// lidzba graczy 1 = 1 testy
+				// lidzba graczy 1 = 1 vs pc
 				// lidzba graczy 2 = 2
-				// lidzba graczy 3 = vs pc
+				// lidzba graczy 3 = test
+				JOptionPane.showMessageDialog(null, "Opcja gry dla 2 graczy");
 				JOptionPane.showMessageDialog(null, "Gracz 1 ustawia statki");
 				int lidzbaGraczy;
-				int wersjaPola = 1;// ilosc statków
+				int wersjaPola = 4;// ilosc statków, 4 to na test
 				Statki statki = new Statki(wersjaPola);
-				GeneratorMapy window = new GeneratorMapy(lidzbaGraczy = 2,statki);
+				UstawieniePolaMapa window = new UstawieniePolaMapa(lidzbaGraczy = 2,statki);
 				setVisible(false);
 
 			}
@@ -50,10 +51,13 @@ public class OknoStartowe extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
+				JOptionPane.showMessageDialog(null, "VS PC");
+				
 
-				PlanszaGracza window = new PlanszaGracza();
-				window.setVisible(true);
-
+				int lidzbaGraczy;
+				int wersjaPola = 1;// ilosc statków
+				Statki statki = new Statki(wersjaPola);
+				UstawieniePolaMapa window = new UstawieniePolaMapa(lidzbaGraczy = 1,statki);
 			}
 		});
 
@@ -61,15 +65,13 @@ public class OknoStartowe extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				JOptionPane.showMessageDialog(null, "Zaznacz 10 pol");
-				// lidzba graczy 1 = 1 testy
-				// lidzba graczy 2 = 2
-				// lidzba graczy 3 = vs pc
+				JOptionPane.showMessageDialog(null, "TEST");
+				
 
 				int lidzbaGraczy;
 				int wersjaPola = 1;// ilosc statków
 				Statki statki = new Statki(wersjaPola);
-				GeneratorMapy window = new GeneratorMapy(lidzbaGraczy = 1,statki);
+				UstawieniePolaMapa window = new UstawieniePolaMapa(lidzbaGraczy = 3,statki);
 
 			}
 		});

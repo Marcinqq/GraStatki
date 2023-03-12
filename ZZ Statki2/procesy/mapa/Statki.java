@@ -5,34 +5,34 @@ public class Statki {
 	private int niszczyciel;// 4
 	private int krarzownik;// 3
 	private int kuter;// 2
-	private final int lotniskowiecDlugosc=5;// 5
-	private final int niszczycielDlugosc=4;// 4
-	private final int krarzownikDlugosc=3;// 3
-	private final int kuterDlugosc=2;// 2
+	private final int lotniskowiecDlugosc = 5;// 5
+	private final int niszczycielDlugosc = 4;// 4
+	private final int krarzownikDlugosc = 3;// 3
+	private final int kuterDlugosc = 2;// 2
 	private int wejscie;
 
 	public Statki(int wejscie) {
 		this.wejscie = wejscie;
-
 		if (wejscie == 1) {
-			System.out.println("Wersja1");
 			lotniskowiec = 1;
 			niszczyciel = 1;
 			krarzownik = 2;
 			kuter = 4;
-
 		} else if (wejscie == 2) {
-			System.out.println("Wersja2");
 			lotniskowiec = 2;
 			niszczyciel = 2;
 			krarzownik = 1;
 			kuter = 1;
-		} else {
-			System.out.println("Wersja3");
+		} else if (wejscie == 3) {
 			lotniskowiec = 4;
 			niszczyciel = 0;
 			krarzownik = 0;
 			kuter = 4;
+		} else {
+			lotniskowiec = 1;
+			niszczyciel = 0;
+			krarzownik = 0;
+			kuter = 1;
 		}
 
 	}
@@ -48,6 +48,7 @@ public class Statki {
 	public int getNiszczyciel() {
 		return niszczyciel;
 	}
+
 	public void downNiszczyciel() {
 		niszczyciel--;
 	}
@@ -55,6 +56,7 @@ public class Statki {
 	public int getKrarzownik() {
 		return krarzownik;
 	}
+
 	public void downKrarzownik() {
 		krarzownik--;
 	}
@@ -62,6 +64,7 @@ public class Statki {
 	public int getKuter() {
 		return kuter;
 	}
+
 	public void downKuter() {
 		kuter--;
 	}
@@ -81,7 +84,4 @@ public class Statki {
 	public int getKuterDlugosc() {
 		return kuterDlugosc;
 	}
-
-	
-
 }

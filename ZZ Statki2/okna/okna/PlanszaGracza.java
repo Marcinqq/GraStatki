@@ -2,6 +2,7 @@ package okna;
 
 import javax.swing.*;
 
+import graPvP.mechanikaGryPVP;
 import poleGry.TabelaGracza;
 
 import java.awt.*;
@@ -10,56 +11,45 @@ import java.awt.event.ActionListener;
 
 public class PlanszaGracza extends JFrame implements ActionListener {
 	private JButton[][] buttons;
+	private JButton[][] buttons2;
 	private TabelaGracza tabela = new TabelaGracza();
+	private mechanikaGryPVP silnikGry;
 
-	public PlanszaGracza() {
-		setSize(500, 500);
+	public PlanszaGracza(TabelaGracza tabela, mechanikaGryPVP silnikGry) {
+		setSize(300, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
-		setTitle("Okno gracza");
 
+		this.tabela = tabela;
+		this.silnikGry = silnikGry;
 		PasekDoOkenek mainMenuBar = new PasekDoOkenek();
 		JMenuBar menuBar = mainMenuBar.getJMenuBar();
 		setJMenuBar(menuBar);
 
-		// tworzenie panelu z guzikami powyżej pol
-		JFrame frame = new JFrame("POLA PRZECIWNIKA");
-		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(12, 12));
-		buttons = new JButton[12][12];
-
-		for (int i = 0; i < buttons.length; i++) {
-			for (int j = 0; j < buttons[i].length; j++) {
+		
+		JPanel centerPanel = new JPanel();
+		//JPanel centerPanel2 = new JPanel();
+		centerPanel.setLayout(new GridLayout(20, 10));
+		//centerPanel2.setLayout(new GridLayout(10, 10));
+		buttons = new JButton[11][11];
+		for (int i = 1; i < buttons.length; i++) {
+			for (int j = 1; j < buttons[i].length; j++) {
 				buttons[i][j] = new JButton("");
 				buttons[i][j].addActionListener(this);
-				panel.add(buttons[i][j]);
+				buttons[i][j].setBackground(Color.cyan);
+				centerPanel.add(buttons[i][j]);
 			}
 		}
-
-		frame.add(panel);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.pack();
-		frame.setVisible(true);
-
-		// tworzenie panelu z polami
-		JPanel centerPanel = new JPanel();
-		centerPanel.setLayout(new GridLayout(10, 10));
-		for (int i = 0; i < 100; i++) {
-			JButton button = new JButton("Guzik " + (i + 1));
-			button.setPreferredSize(new Dimension(50, 50));
-			centerPanel.add(button);
+		buttons2 = new JButton[11][11];
+		for (int i = 1; i < buttons2.length; i++) {
+			for (int j = 1; j < buttons2[i].length; j++) {
+				buttons2[i][j] = new JButton("");
+				buttons[i][j].setBackground(Color.blue);
+				centerPanel.add(buttons2[i][j]);
+			}
 		}
-		add(centerPanel, BorderLayout.CENTER);
-
-		// tworzenie panelu z guzikami na dole
-		JPanel bottomPanel = new JPanel();
-		bottomPanel.setLayout(new FlowLayout());
-		for (int i = 0; i < 4; i++) {
-			JButton button = new JButton("Guzik " + (i + 5));
-			button.setPreferredSize(new Dimension(100, 100));
-			bottomPanel.add(button);
-		}
-		add(bottomPanel, BorderLayout.SOUTH);
+		add(centerPanel);
+		//add(centerPanel2);
 
 	}
 
@@ -67,8 +57,6 @@ public class PlanszaGracza extends JFrame implements ActionListener {
 		JButton source = (JButton) e.getSource();
 		int row = -1;
 		int col = -1;
-
-		// Szukamy klikniętego przycisku w tablicy przycisków
 		for (int i = 0; i < buttons.length; i++) {
 			for (int j = 0; j < buttons[i].length; j++) {
 				if (source == buttons[i][j]) {
@@ -78,12 +66,8 @@ public class PlanszaGracza extends JFrame implements ActionListener {
 				}
 			}
 		}
-		int wyslany = 10;
-		tabela.ustawPole(wyslany, row, col);
-
-		tabela.print();
 		System.out.println(row + " i " + col);
 		source.setBackground(Color.BLACK);
-	
+
 	}
 }
