@@ -18,7 +18,7 @@ public class OknoStartowe extends JFrame {
 
 	public OknoStartowe() {
 		setTitle("Main Menu");
-		setSize(500, 300);
+		setSize(500, 200);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new FlowLayout());
 
@@ -33,9 +33,14 @@ public class OknoStartowe extends JFrame {
 		pvpButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				JFrame pvpFrame = new JFrame("PvP");
-				pvpFrame.setSize(400, 300);
-				pvpFrame.setVisible(true);
+				// lidzba graczy 1 = 1 testy
+				// lidzba graczy 2 = 2
+				// lidzba graczy 3 = vs pc
+				JOptionPane.showMessageDialog(null, "Gracz 1 ustawia statki");
+				int lidzbaGraczy;
+				int wersjaPola = 1;// ilosc statków
+				Statki statki = new Statki(wersjaPola);
+				GeneratorMapy window = new GeneratorMapy(lidzbaGraczy = 2,statki);
 				setVisible(false);
 
 			}

@@ -17,12 +17,14 @@ public class TabelaGracza {
 	// 12 krarzownik
 	// 13 kuter
 	public TabelaGracza() {
+		czyscTabela();
+	}
+	public void czyscTabela() {
 		for (int i = 0; i < pole.length; i++) {
 			for (int j = 0; j < pole[i].length; j++) {
 				pole[i][j] = 1;
 			}
 		}
-
 	}
 	public void czyscGracza(JButton[][] buttons) {
 		for (int i = 0; i < pole.length; i++) {

@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 public class GeneratorMapy implements ActionListener {
 	private JButton[][] buttons;
 	private TabelaGracza tabela = new TabelaGracza();
+	private TabelaGracza tabelaGracz1 = new TabelaGracza();
 	private int statkiDocelowe = 0;
 	private int statekNaMapie = 0;
 	private int dlugoscStatku = 0;
@@ -21,6 +22,7 @@ public class GeneratorMapy implements ActionListener {
 	private boolean poczatekStatku = true;
 	private boolean wnetrzeStatku = false;
 	private boolean punktKlikniecia = false;
+	JFrame frame = new JFrame("Gracz1 okrenty");
 
 // lidzba graczy 1 = 1 testy
 	// lidzba graczy 2 = 2
@@ -30,7 +32,7 @@ public class GeneratorMapy implements ActionListener {
 		PasekDoOkenek mainMenuBar = new PasekDoOkenek();
 		JMenuBar menuBar = mainMenuBar.getJMenuBar();
 
-		JFrame frame = new JFrame("Twoje okrety");
+		
 		frame.setJMenuBar(menuBar);
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(10, 10));
@@ -50,8 +52,19 @@ public class GeneratorMapy implements ActionListener {
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
+		frame.setSize(500, 500);
 		frame.setVisible(true);
 
+	}
+
+	public void czyszczenieGuzikow() {
+		for (int i = 1; i < buttons.length; i++) {
+			for (int j = 1; j < buttons[i].length; j++) {
+
+				buttons[i][j].setBackground(Color.cyan);
+
+			}
+		}
 	}
 
 // wdrukowyanie czarnego pola
@@ -149,7 +162,7 @@ public class GeneratorMapy implements ActionListener {
 				if (dlugoscStatku + row < 12 && tabela.getPole(dlugoscStatku + row - 1, col) == 1) {
 					System.out.println("statek dlurzyszy niż 2");
 					wnetrzeStatku = true; // true
-					int pentla = dlugoscStatku ;
+					int pentla = dlugoscStatku;
 					System.out.println(wnetrzeStatku + " wnetrzeStatku");
 					System.out.println(dlugoscStatku + "dlugoscStatku");
 					System.out.println(pentla + "pentla przed");
@@ -168,7 +181,7 @@ public class GeneratorMapy implements ActionListener {
 						source.setBackground(Color.red);
 						buttons[dlugoscStatku + row - 1][col].setBackground(Color.blue);
 						poczatekStatku = false;
-						punktKlikniecia= true;
+						punktKlikniecia = true;
 						tabela.ustawPole(65, dlugoscStatku + row - 1, col);
 						tabela.print();
 					}
@@ -190,7 +203,7 @@ public class GeneratorMapy implements ActionListener {
 						source.setBackground(Color.red);
 						buttons[row - dlugoscStatku + 1][col].setBackground(Color.blue);
 						poczatekStatku = false;
-						punktKlikniecia= true;
+						punktKlikniecia = true;
 						tabela.ustawPole(45, row - dlugoscStatku + 1, col);
 						tabela.print();
 					}
@@ -212,7 +225,7 @@ public class GeneratorMapy implements ActionListener {
 						source.setBackground(Color.red);
 						buttons[row][dlugoscStatku + col - 1].setBackground(Color.blue);
 						poczatekStatku = false;
-						punktKlikniecia= true;
+						punktKlikniecia = true;
 						tabela.ustawPole(56, row, dlugoscStatku + col - 1);
 						tabela.print();
 					}
@@ -234,14 +247,14 @@ public class GeneratorMapy implements ActionListener {
 						source.setBackground(Color.red);
 						buttons[row][col - dlugoscStatku + 1].setBackground(Color.blue);
 						poczatekStatku = false;
-						punktKlikniecia= true;
+						punktKlikniecia = true;
 						tabela.ustawPole(54, row, col - dlugoscStatku + 1);
 						tabela.print();
 					}
 				}
-				if(punktKlikniecia) {
+				if (punktKlikniecia) {
 					tabela.ustawPole(4, row, col);
-					punktKlikniecia= false;
+					punktKlikniecia = false;
 				}
 			}
 		}
@@ -322,9 +335,25 @@ public class GeneratorMapy implements ActionListener {
 						poziomStatku++;
 					}
 				}
-			} else if (poziomStatku >= 4) {
+			}
+			if (poziomStatku >= 4) {
+
 				System.out.println("poziomStatku else koniec wstawiania statków pora włączyć grę");
 				tabela.print();
+				czyszczenieGuzikow();
+
+				tabelaGracz1 = tabela;
+				tabelaGracz1.print();
+				tabela.czyscTabela();
+				tabela.print();
+				statekNaMapie = statki.getLotniskowiec();
+				dlugoscStatku = statki.getLotniskowiecDlugosc();
+				poczatekStatku = true;
+				poziomStatku = 0;
+				statkiDocelowe = 0;
+				System.out.println(statekNaMapie);
+				frame.setTitle("Gracz2 wybiera okrety");
+				JOptionPane.showMessageDialog(null, "Gracz  2 ustawia statki");
 			}
 		} else {
 			drukStatku(row, col, wyslany, source);
