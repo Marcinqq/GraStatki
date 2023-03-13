@@ -28,9 +28,9 @@ public class PlanszaGracza extends JFrame implements ActionListener {
 		setJMenuBar(menuBar);
 
 		JPanel centerPanel = new JPanel();
-		// JPanel centerPanel2 = new JPanel();
+
 		centerPanel.setLayout(new GridLayout(20, 10));
-		// centerPanel2.setLayout(new GridLayout(10, 10));
+
 		buttons = new JButton[11][11];
 		for (int i = 1; i < buttons.length; i++) {
 			for (int j = 1; j < buttons[i].length; j++) {
@@ -38,31 +38,59 @@ public class PlanszaGracza extends JFrame implements ActionListener {
 				buttons[i][j].addActionListener(this);
 				buttons[i][j].setBackground(Color.blue);
 				centerPanel.add(buttons[i][j]);
-				
+
 			}
 		}
 		buttons2 = new JButton[11][11];
 		for (int i = 1; i < buttons2.length; i++) {
 			for (int j = 1; j < buttons2[i].length; j++) {
 				buttons2[i][j] = new JButton("");
-				
-				
-				if (tabela.getPole(i,j) != 1) {
+
+				if (tabela.getPole(i, j) != 1) {
 					buttons2[i][j].setBackground(Color.black);
 					centerPanel.add(buttons2[i][j]);
 				} else {
 					buttons2[i][j].setBackground(Color.cyan);
 					centerPanel.add(buttons2[i][j]);
 				}
-				
-				
-				
-				
+
 			}
 		}
 		add(centerPanel);
-		// add(centerPanel2);
 
+	}
+
+	// 1 pole puste
+	// 2 pudło
+	// 3 trariony
+	// 4 cengtrum klikniecia w generatorze
+	// 10 lotniskowiec
+	// 11 niszczyciel
+	// 12 krarzownik
+	// 13 kuter
+	public void ustawPoleNaAtak(int row, int col, int wartosc) {
+		if (wartosc == 1) {
+			buttons[row][col].setBackground(Color.cyan);
+
+		} else if (wartosc == 2) {
+			buttons[row][col].setBackground(Color.DARK_GRAY);
+		} else if (wartosc == 3) {
+			buttons[row][col].setBackground(Color.yellow);
+		} else if (wartosc == 11 || wartosc == 10 || wartosc == 12 || wartosc == 13) {
+			buttons[row][col].setBackground(Color.red);
+		}
+	}
+
+	public void ustawPoleNaEfektAtaku(int row, int col, int wartosc) {
+		if (wartosc == 1) {
+			buttons2[row][col].setBackground(Color.white);
+		} else if (wartosc == 2) {
+			buttons2[row][col].setBackground(Color.DARK_GRAY);
+		} else if (wartosc == 3) {
+			buttons2[row][col].setBackground(Color.yellow);
+		} else if (wartosc == 11 || wartosc == 10 || wartosc == 12 || wartosc == 13) {
+			buttons2[row][col].setBackground(Color.red);
+		}
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -78,8 +106,7 @@ public class PlanszaGracza extends JFrame implements ActionListener {
 				}
 			}
 		}
-		System.out.println(row + " i " + col);
-		source.setBackground(Color.BLACK);
+		silnikGry.sprawdzPolePrzeciwnika(row, col, graczDrugi);
 
 	}
 }
