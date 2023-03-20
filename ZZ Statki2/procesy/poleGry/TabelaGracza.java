@@ -62,6 +62,18 @@ public class TabelaGracza {
 
 		return pole[i][j];
 	}
+	
+	public boolean czek() {
+		
+		for (int i = 0; i < pole.length; i++) {
+			for (int j = 0; j < pole[i].length; j++) {
+				if( 10==pole[i][j]||11==pole[i][j]||12==pole[i][j]||13==pole[i][j]) {
+					return false;
+				}	
+			}
+		}
+		return true;
+	}
 
 	public void print() {
 		System.out.println();
