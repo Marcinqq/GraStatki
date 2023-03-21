@@ -132,6 +132,7 @@ public class UstawieniePolaMapa implements ActionListener {
 					poczatekStatku = false;
 					tabela.ustawPole(4, row, col);
 					tabela.ustawPole(65, dlugoscStatku + row - 1, col);
+					punktKlikniecia = true;
 				}
 				if (row - dlugoscStatku + 1 > 0 && tabela.getPole(row - dlugoscStatku + 1, col) == 1) {
 					source.setBackground(Color.red);
@@ -139,6 +140,7 @@ public class UstawieniePolaMapa implements ActionListener {
 					poczatekStatku = false;
 					tabela.ustawPole(4, row, col);
 					tabela.ustawPole(45, row - dlugoscStatku + 1, col);
+					punktKlikniecia = true;
 
 				}
 				if (dlugoscStatku + col < 12 && tabela.getPole(row, dlugoscStatku + col - 1) == 1) {
@@ -147,6 +149,7 @@ public class UstawieniePolaMapa implements ActionListener {
 					poczatekStatku = false;
 					tabela.ustawPole(4, row, col);
 					tabela.ustawPole(56, row, dlugoscStatku + col - 1);
+					punktKlikniecia = true;
 
 				}
 				if (col - dlugoscStatku + 1 > 0 && tabela.getPole(row, col - dlugoscStatku + 1) == 1) {
@@ -155,6 +158,11 @@ public class UstawieniePolaMapa implements ActionListener {
 					poczatekStatku = false;
 					tabela.ustawPole(55, row, col);
 					tabela.ustawPole(54, row, col - dlugoscStatku + 1);
+					punktKlikniecia = true;
+				}
+				if (punktKlikniecia) {
+					tabela.ustawPole(4, row, col);
+					punktKlikniecia = false;
 				}
 			} else {
 				if (dlugoscStatku + row < 12 && tabela.getPole(dlugoscStatku + row - 1, col) == 1) {

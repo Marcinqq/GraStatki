@@ -39,7 +39,7 @@ public class OknoStartowe extends JFrame {
 				JOptionPane.showMessageDialog(null, "Opcja gry dla 2 graczy");
 				JOptionPane.showMessageDialog(null, "Gracz 1 ustawia statki");
 				int lidzbaGraczy;
-				int wersjaPola = 4;// ilosc statków, 4 to na test
+				int wersjaPola = 1;// ilosc statków, 4 to na test
 				Statki statki = new Statki(wersjaPola);
 				UstawieniePolaMapa window = new UstawieniePolaMapa(lidzbaGraczy = 2,statki);
 				setVisible(false);

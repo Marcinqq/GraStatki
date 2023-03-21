@@ -22,7 +22,7 @@ public class mechanikaGryPVP {
 		graczDrugi = true;
 		planszaGracza2 = new PlanszaGracza(tabelaGracza2, this, graczDrugi);
 
-		planszaGracza2.setVisible(true);// false powinno byc zmienione na testy
+		planszaGracza2.setVisible(false);
 
 		planszaGracza2.setTitle("Okno gracza2");
 	}
@@ -49,6 +49,7 @@ public class mechanikaGryPVP {
 				planszaGracza.ustawPoleNaEfektAtaku(row, col, tabelaGracza1.getPole(row, col));
 				tabelaGracza1.ustawPole(2, row, col);
 				planszaGracza2.setVisible(false);
+				JOptionPane.showMessageDialog(null, "Kolej grcza 1");
 				planszaGracza.setVisible(true);
 			} else if (tabelaGracza1.getPole(row, col) == 11 || tabelaGracza1.getPole(row, col) == 12
 					|| tabelaGracza1.getPole(row, col) == 10 || tabelaGracza1.getPole(row, col) == 13) {
@@ -65,6 +66,7 @@ public class mechanikaGryPVP {
 				planszaGracza2.ustawPoleNaEfektAtaku(row, col, tabelaGracza2.getPole(row, col));
 				tabelaGracza2.ustawPole(2, row, col);
 				planszaGracza.setVisible(false);
+				JOptionPane.showMessageDialog(null, "Kolej grcza 2");
 				planszaGracza2.setVisible(true);
 			} else if (tabelaGracza2.getPole(row, col) == 11 || tabelaGracza2.getPole(row, col) == 12
 					|| tabelaGracza2.getPole(row, col) == 10 || tabelaGracza2.getPole(row, col) == 13) {
