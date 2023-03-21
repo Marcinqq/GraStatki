@@ -29,11 +29,11 @@ public class mechanikaGryPVP {
 
 	private void sprawdzenieKonca(boolean graczDrugi) {
 		if (graczDrugi) {
-			if(tabelaGracza2.czek()){
+			if (tabelaGracza1.czek()) {
 				JOptionPane.showMessageDialog(null, "gracz1 wygrywa");
 			}
 		} else {
-			if(tabelaGracza1.czek()){
+			if (tabelaGracza2.czek()) {
 				JOptionPane.showMessageDialog(null, "gracz2 wygrywa");
 			}
 		}
@@ -47,14 +47,14 @@ public class mechanikaGryPVP {
 			if (tabelaGracza1.getPole(row, col) == 1) {
 				planszaGracza2.ustawPoleNaAtak(row, col, tabelaGracza1.getPole(row, col));
 				planszaGracza.ustawPoleNaEfektAtaku(row, col, tabelaGracza1.getPole(row, col));
-				//tabelaGracza1.ustawPole(sprawdzic co)
-				// planszaGracza2.setVisible(false); działa
-				// planszaGracza.setVisible(true);
+				tabelaGracza1.ustawPole(2, row, col);
+				planszaGracza2.setVisible(false);
+				planszaGracza.setVisible(true);
 			} else if (tabelaGracza1.getPole(row, col) == 11 || tabelaGracza1.getPole(row, col) == 12
 					|| tabelaGracza1.getPole(row, col) == 10 || tabelaGracza1.getPole(row, col) == 13) {
 				planszaGracza2.ustawPoleNaAtak(row, col, tabelaGracza1.getPole(row, col));
 				planszaGracza.ustawPoleNaEfektAtaku(row, col, tabelaGracza1.getPole(row, col));
-				//tabelaGracza1.ustawPole(sprawdzic co)
+				tabelaGracza1.ustawPole(3, row, col);
 				sprawdzenieKonca(graczDrugi);
 			}
 
@@ -63,14 +63,14 @@ public class mechanikaGryPVP {
 			if (tabelaGracza2.getPole(row, col) == 1) {
 				planszaGracza.ustawPoleNaAtak(row, col, tabelaGracza2.getPole(row, col));
 				planszaGracza2.ustawPoleNaEfektAtaku(row, col, tabelaGracza2.getPole(row, col));
-				//tabelaGracza2.ustawPole(sprawdzic co)
-				// planszaGracza.setVisible(false); działa
-				// planszaGracza2.setVisible(true);
+				tabelaGracza2.ustawPole(2, row, col);
+				planszaGracza.setVisible(false);
+				planszaGracza2.setVisible(true);
 			} else if (tabelaGracza2.getPole(row, col) == 11 || tabelaGracza2.getPole(row, col) == 12
 					|| tabelaGracza2.getPole(row, col) == 10 || tabelaGracza2.getPole(row, col) == 13) {
 				planszaGracza.ustawPoleNaAtak(row, col, tabelaGracza2.getPole(row, col));
 				planszaGracza2.ustawPoleNaEfektAtaku(row, col, tabelaGracza2.getPole(row, col));
-				//tabelaGracza2.ustawPole(sprawdzic co)
+				tabelaGracza2.ustawPole(3, row, col);
 				sprawdzenieKonca(graczDrugi);
 			}
 		}
